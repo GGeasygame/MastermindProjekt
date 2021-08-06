@@ -10,7 +10,7 @@ public class Main {
 	    int randomColour2 = random.nextInt(colour.length);
 	    int randomColour3 = random.nextInt(colour.length);
 	    int randomColour4 = random.nextInt(colour.length);
-	    System.out.println(randomColour1);
+
 	    System.out.println(colour[randomColour1]);
 		System.out.println(colour[randomColour2]);
 		System.out.println(colour[randomColour3]);
