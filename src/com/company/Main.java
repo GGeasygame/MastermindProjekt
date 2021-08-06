@@ -52,7 +52,22 @@ public class Main {
     }
 
     public static void Abgleichung(String randomColour1, String randomColour2, String randomColour3, String randomColour4, String colour1, String colour2) { //scanner einfügen
-        if (colour1 == randomColour1) {
+        Boolean c1korrekt;
+        Boolean c2korrekt;
+        Boolean c3korrekt;
+        Boolean c4korrekt;
 
+
+
+        if (colour1.equals(randomColour1)) {
+            c1korrekt = true;
+        } else if (colour2.equals(randomColour2)) {
+            c2korrekt = true;
+        } else if (colour3.equals(randomColour3)) {
+            c3korrekt = true;
+        } else if (colour4.equals(randomColour4)) {
+            c4korrekt = true;
         }
-    }}
+
+    }
+}
