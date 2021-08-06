@@ -21,21 +21,28 @@ public class Main {
 		System.out.println(colour[randomColour3]);
 		System.out.println(colour[randomColour4]);
 
+
+
 		scanner();
     }
     public static String scanner() {
 
 		Scanner scanner1 = new Scanner(System.in);
 
-		System.out.println("Geben Sie Ihre erste Farbe ein");
+		System.out.println("Geben Sie Ihre erste Farbe ein:");
 			String colour1 = scanner1.next();
 
-		System.out.println("Geben Sie Ihre zweite Farbe ein");
+		System.out.println("Geben Sie Ihre zweite Farbe ein:");
 			String colour2 = scanner1.next();
 
+		System.out.println("Geben sie Ihre dritte Zahl ein:");
+			String colour3 = scanner1.next();
+
+		System.out.println("Geben sie Ihre vierte Zahl ein:");
+			String colour4 = scanner1.next();
 
 
-		return colour1 + colour2;
+		return colour1 + colour2 + colour3 + colour4;
 
 
 	}
