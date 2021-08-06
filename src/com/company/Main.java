@@ -28,6 +28,12 @@ public class Main {
         String randomColour3 = colour[rc3];
         String randomColour4 = colour[rc4];
 
+        int counter = 0;
+        if (counter == 12){
+            System.out.println("Verloren, Sie haben alle Ihre Versuche aufgebraucht!");
+            break;
+        } else if (counter == 1)
+
         scanner();
         Abgleichung(randomColour1, randomColour2, randomColour3, randomColour4, colour1, colour2);
     }
