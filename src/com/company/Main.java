@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class Main {
     public static String colour1;
     public static String colour2;
+    public static String colour3;
+    public static String colour4;
     public static void main(String[] args) {
         //colour generator
         String[] colour = {"Blue", "Red", "Green", "Yellow", "Purple", "Black", "White", "Grey"};
@@ -34,17 +36,23 @@ public class Main {
 
         Scanner scanner1 = new Scanner(System.in);
 
-        System.out.println("Geben Sie Ihre erste Farbe ein");
+        System.out.println("Geben Sie Ihre erste Farbe ein:");
         colour1 = scanner1.next();
 
-        System.out.println("Geben Sie Ihre zweite Farbe ein");
-        colour2 = scanner1.next();
+        System.out.println("Geben Sie Ihre zweite Farbe ein:");
+		colour2 = scanner1.next();
 
+		System.out.println("Geben Sie Ihre dritte Farbe ein:");
+		colour3 = scanner1.next();
 
+		System.out.println("Geben Sie Ihre vierte Farbe ein:");
+		colour4 = scanner1.next();
+
+		return colour1 + colour2 + colour3 + colour4;
     }
 
     public static void Abgleichung(String randomColour1, String randomColour2, String randomColour3, String randomColour4, String colour1, String colour2) { //scanner einfügen
         if (colour1 == randomColour1) {
 
         }
-    }
+    }}
