@@ -91,6 +91,8 @@ public class Main {
         if (colour4.equalsIgnoreCase(randomColour1) || colour4.equalsIgnoreCase(randomColour2) || colour4.equalsIgnoreCase(randomColour3) || colour4.equalsIgnoreCase(randomColour4)) {
             korrekt++;
         }
+
+
         if (colour1.equalsIgnoreCase(randomColour1)) {
             vollKorrekt++;
         }
