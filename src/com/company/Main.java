@@ -37,7 +37,10 @@ public class Main {
                 System.out.println("Sie haben noch " + i + " Versuche");
 
 
-                if (i == 0) {
+
+                scanner();
+                i = Abgleichung(randomColour1, randomColour2, randomColour3, randomColour4, colour1, colour2, colour3, colour4, i);
+                if (i == 1) {
                     System.out.println("Verloren, Sie haben alle Ihre Versuche aufgebraucht!");
                     System.out.println("Der Farbcode war:");
                     System.out.println(randomColour1);
@@ -45,9 +48,6 @@ public class Main {
                     System.out.println(randomColour3);
                     System.out.println(randomColour4);
                 }
-                scanner();
-                i = Abgleichung(randomColour1, randomColour2, randomColour3, randomColour4, colour1, colour2, colour3, colour4, i);
-
 
             }
 
