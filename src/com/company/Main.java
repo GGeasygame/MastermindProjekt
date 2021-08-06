@@ -31,13 +31,13 @@ public class Main {
         int counter = 0;
         if (counter == 12){
             System.out.println("Verloren, Sie haben alle Ihre Versuche aufgebraucht!");
-            break;
+            System.exit(0);
         } else if (counter == 1)
 
         scanner();
-        Abgleichung(randomColour1, randomColour2, randomColour3, randomColour4, colour1, colour2);
+        Abgleichung(randomColour1, randomColour2, randomColour3, randomColour4, colour1, colour2, colour3, colour4, counter);
     }
-
+//Spieler wählt Farben
     public static String scanner() {
 
         Scanner scanner1 = new Scanner(System.in);
@@ -56,20 +56,41 @@ public class Main {
 
 		return colour1 + colour2 + colour3 + colour4;
     }
-
-    public static void Abgleichung(String randomColour1, String randomColour2, String randomColour3, String randomColour4, String colour1, String colour2) { //scanner einfügen
+//Vergleich von gewählten Farben mit computergenerierten Farben
+    public static void Abgleichung(String randomColour1, String randomColour2, String randomColour3, String randomColour4, String colour1, String colour2, String colour3, String colour4, int counter) { //scanner einfügen
         int korrekt = 0;
+        int vollKorrekt = 0;
 
 
-
+        if (colour1.equals(randomColour1) || colour1.equals(randomColour2) || colour1.equals(randomColour3) || colour1.equals(randomColour4)) {
+            korrekt++;
+        }
+        if (colour2.equals(randomColour1) || colour2.equals(randomColour2) || colour2.equals(randomColour3) || colour2.equals(randomColour4)) {
+            korrekt++;
+        }
+        if (colour3.equals(randomColour1) || colour3.equals(randomColour2) || colour3.equals(randomColour3) || colour3.equals(randomColour4)) {
+            korrekt++;
+        }
+        if (colour4.equals(randomColour1) || colour4.equals(randomColour2) || colour4.equals(randomColour3) || colour4.equals(randomColour4)) {
+            korrekt++;
+        }
         if (colour1.equals(randomColour1)) {
-            korrekt++;
-        } else if (colour2.equals(randomColour2)) {
-            korrekt++;
-        } else if (colour3.equals(randomColour3)) {
-            korrekt++;
-        } else if (colour4.equals(randomColour4)) {
-            korrekt++;
+            vollKorrekt++;
+        }
+        if (colour2.equals(randomColour2)) {
+            vollKorrekt++;
+        }
+        if (colour3.equals(randomColour3)) {
+            vollKorrekt++;
+        }
+        if (colour4.equals(randomColour4)) {
+            vollKorrekt++;
+        }
+        if (vollKorrekt == 4) {
+            System.out.println("Gratulation, Sie haben gewonnen und haben " + counter + " Versuche gebraucht.");
+        } else {
+            System.out.println("Sie haben " + korrekt + " Farben korrekt.");
+            System.out.println("Sie haben " + vollKorrekt + " Farben korrekt und an richtiger Stelle.");
         }
 
     }
