@@ -9,33 +9,44 @@ public class Main {
     public static String colour2;
     public static String colour3;
     public static String colour4;
+    public static Boolean restart = true;
     public static void main(String[] args) {
-        //colour generator
-        String[] colour = {"Blue", "Red", "Green", "Yellow", "Purple", "Black", "White", "Grey"};
-        Random random = new Random();
-        int rc1 = random.nextInt(colour.length);
-        int rc2 = random.nextInt(colour.length);
-        int rc3 = random.nextInt(colour.length);
-        int rc4 = random.nextInt(colour.length);
 
-        System.out.println(colour[rc1]);
-        System.out.println(colour[rc2]);
-        System.out.println(colour[rc3]);
-        System.out.println(colour[rc4]);
+        do {
+            //colour generator
+            String[] colour = {"Blue", "Red", "Green", "Yellow", "Purple", "Black", "White", "Grey"};
+            Random random = new Random();
+            int rc1 = random.nextInt(colour.length);
+            int rc2 = random.nextInt(colour.length);
+            int rc3 = random.nextInt(colour.length);
+            int rc4 = random.nextInt(colour.length);
 
-        String randomColour1 = colour[rc1];
-        String randomColour2 = colour[rc2];
-        String randomColour3 = colour[rc3];
-        String randomColour4 = colour[rc4];
+            System.out.println(colour[rc1]);
+            System.out.println(colour[rc2]);
+            System.out.println(colour[rc3]);
+            System.out.println(colour[rc4]);
 
-        int counter = 0;
-        if (counter == 12){
-            System.out.println("Verloren, Sie haben alle Ihre Versuche aufgebraucht!");
-            System.exit(0);
-        } else if (counter == 1)
+            String randomColour1 = colour[rc1];
+            String randomColour2 = colour[rc2];
+            String randomColour3 = colour[rc3];
+            String randomColour4 = colour[rc4];
+            int num = 0;
+            for (int i = 12; i > num; i--) {
 
-        scanner();
-        Abgleichung(randomColour1, randomColour2, randomColour3, randomColour4, colour1, colour2, colour3, colour4, counter);
+                System.out.println("Sie haben noch " + i + " Versuche");
+
+
+                if (i == 0) {
+                    System.out.println("Verloren, Sie haben alle Ihre Versuche aufgebraucht!");
+                }
+                scanner();
+                i = Abgleichung(randomColour1, randomColour2, randomColour3, randomColour4, colour1, colour2, colour3, colour4, i);
+
+
+            }
+
+
+        } while (ende());
     }
 //Spieler wählt Farben
     public static String scanner() {
@@ -57,7 +68,7 @@ public class Main {
 		return colour1 + colour2 + colour3 + colour4;
     }
 //Vergleich von gewählten Farben mit computergenerierten Farben
-    public static void Abgleichung(String randomColour1, String randomColour2, String randomColour3, String randomColour4, String colour1, String colour2, String colour3, String colour4, int counter) { //scanner einfügen
+    public static int Abgleichung(String randomColour1, String randomColour2, String randomColour3, String randomColour4, String colour1, String colour2, String colour3, String colour4, int i) { //scanner einfügen
         int korrekt = 0;
         int vollKorrekt = 0;
 
@@ -86,12 +97,28 @@ public class Main {
         if (colour4.equals(randomColour4)) {
             vollKorrekt++;
         }
+
         if (vollKorrekt == 4) {
-            System.out.println("Gratulation, Sie haben gewonnen und haben " + counter + " Versuche gebraucht.");
+            System.out.println("Gratulation, Sie haben gewonnen und haben " + (13-i) + " Versuche gebraucht.");
+            i = 0;
+
         } else {
             System.out.println("Sie haben " + korrekt + " Farben korrekt.");
             System.out.println("Sie haben " + vollKorrekt + " Farben korrekt und an richtiger Stelle.");
         }
 
+        return i;
+    }
+    public static Boolean ende() {
+        Boolean restart;
+        System.out.println("Möchtest du nochmals spielen? (Ja, Nein)");
+        Scanner scanner = new Scanner(System.in);
+        String rs = scanner.next();
+        if (rs.equals("Ja")) {
+            restart = true;
+        } else {
+            restart = false;
+        }
+         return restart;
     }
 }
