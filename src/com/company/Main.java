@@ -1,8 +1,9 @@
 package com.company;
 
 import java.sql.SQLOutput;
+import java.util.Locale;
 import java.util.Random;
-
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -11,7 +12,7 @@ public class Main {
 
         do {
             //colour generator
-            String[] colour = {"Blau", "Rot", "Grün", "Gelb", "Violet", "Schwarz", "Weiss", "Grau"};
+            String[] colour = {"BLAU", "ROT", "GRÜN", "GELB", "VIOLET", "SCHWARZ", "WEISS", "GRAU"};
             Random random = new Random();
             int rc1 = random.nextInt(colour.length);
             int rc2 = random.nextInt(colour.length);
@@ -25,6 +26,7 @@ public class Main {
             String randomColour4 = colour[rc4];
             String[] randomColours = {randomColour1, randomColour2, randomColour3, randomColour4};
             System.out.println("Die verfügenbaren Farben Blau, Rot, Grün, Gelb, Violet, Schwarz, Weiss, Grau");
+
             int num = 0;
             for (int o = 12; o > num; o--) {
 
@@ -32,7 +34,7 @@ public class Main {
 
 
                 String[] colours;
-                colours = scanner();
+                colours = scanner(colour);
                 o= checkTreffer(colours, randomColours, o);
                 if (o == 1) {
                     System.out.println("Verloren, Sie haben alle Ihre Versuche aufgebraucht!");
@@ -49,22 +51,34 @@ public class Main {
         } while (ende());
     }
 //Spieler wählt Farben
-    public static String[] scanner() {
+    public static String[] scanner(String[] colour) {
 
         Scanner scanner1 = new Scanner(System.in);
 
         System.out.println("Geben Sie Ihre erste Farbe ein:");
         String colour1 = scanner1.next();
-
+        while (!Arrays.asList(colour).contains(colour1.toUpperCase())) {
+            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
+            colour1 = scanner1.next();
+        }
         System.out.println("Geben Sie Ihre zweite Farbe ein:");
 		String colour2 = scanner1.next();
-
+        while (!Arrays.asList(colour).contains(colour2.toUpperCase())) {
+            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
+            colour2 = scanner1.next();
+        }
 		System.out.println("Geben Sie Ihre dritte Farbe ein:");
 		String colour3 = scanner1.next();
-
+        while (!Arrays.asList(colour).contains(colour3.toUpperCase())) {
+            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
+            colour3 = scanner1.next();
+        }
 		System.out.println("Geben Sie Ihre vierte Farbe ein:");
 		String colour4 = scanner1.next();
-
+        while (!Arrays.asList(colour).contains(colour4.toUpperCase())) {
+            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
+            colour4 = scanner1.next();
+        }
 		String[] colours = {colour1, colour2, colour3, colour4};
 
 		return colours;
