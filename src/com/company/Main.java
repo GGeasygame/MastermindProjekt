@@ -13,17 +13,18 @@ public class Main {
         do {
             //colour generator
             String[] colour = {"BLAU", "ROT", "GRÜN", "GELB", "VIOLET", "SCHWARZ", "WEISS", "GRAU"};
+            String[] colourNormal = {"Blau", "Rot", "Grün", "Gelb", "Violet", "Schwarz", "Weiss", "Grau"};
             Random random = new Random();
-            int rc1 = random.nextInt(colour.length);
-            int rc2 = random.nextInt(colour.length);
-            int rc3 = random.nextInt(colour.length);
-            int rc4 = random.nextInt(colour.length);
+            int rc1 = random.nextInt(colourNormal.length);
+            int rc2 = random.nextInt(colourNormal.length);
+            int rc3 = random.nextInt(colourNormal.length);
+            int rc4 = random.nextInt(colourNormal.length);
 
 
-            String randomColour1 = colour[rc1];
-            String randomColour2 = colour[rc2];
-            String randomColour3 = colour[rc3];
-            String randomColour4 = colour[rc4];
+            String randomColour1 = colourNormal[rc1];
+            String randomColour2 = colourNormal[rc2];
+            String randomColour3 = colourNormal[rc3];
+            String randomColour4 = colourNormal[rc4];
             String[] randomColours = {randomColour1, randomColour2, randomColour3, randomColour4};
             System.out.println("Die verfügenbaren Farben Blau, Rot, Grün, Gelb, Violet, Schwarz, Weiss, Grau");
 
