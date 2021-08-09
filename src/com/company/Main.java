@@ -1,14 +1,11 @@
 package com.company;
 
+import java.sql.SQLOutput;
 import java.util.Random;
 
 import java.util.Scanner;
 
 public class Main {
-    public static String colour1;
-    public static String colour2;
-    public static String colour3;
-    public static String colour4;
     public static Boolean restart = true;
     public static void main(String[] args) {
 
@@ -21,26 +18,23 @@ public class Main {
             int rc3 = random.nextInt(colour.length);
             int rc4 = random.nextInt(colour.length);
 
-            //System.out.println(colour[rc1]);
-            //System.out.println(colour[rc2]);
-            //System.out.println(colour[rc3]);
-            //System.out.println(colour[rc4]);
 
             String randomColour1 = colour[rc1];
             String randomColour2 = colour[rc2];
             String randomColour3 = colour[rc3];
             String randomColour4 = colour[rc4];
+            String[] randomColours = {randomColour1, randomColour2, randomColour3, randomColour4};
             System.out.println("Die verfügenbaren Farben Blau, Rot, Grün, Gelb, Violet, Schwarz, Weiss, Grau");
             int num = 0;
-            for (int i = 12; i > num; i--) {
+            for (int o = 12; o > num; o--) {
 
-                System.out.println("Sie haben noch " + i + " Versuche");
+                System.out.println("Sie haben noch " + o + " Versuche");
 
 
-
-                scanner();
-                i = Abgleichung(randomColour1, randomColour2, randomColour3, randomColour4, colour1, colour2, colour3, colour4, i);
-                if (i == 1) {
+                String[] colours;
+                colours = scanner();
+                o= checkTreffer(colours, randomColours, o);
+                if (o == 1) {
                     System.out.println("Verloren, Sie haben alle Ihre Versuche aufgebraucht!");
                     System.out.println("Der Farbcode war:");
                     System.out.println(randomColour1);
@@ -55,68 +49,75 @@ public class Main {
         } while (ende());
     }
 //Spieler wählt Farben
-    public static String scanner() {
+    public static String[] scanner() {
 
         Scanner scanner1 = new Scanner(System.in);
 
         System.out.println("Geben Sie Ihre erste Farbe ein:");
-        colour1 = scanner1.next();
+        String colour1 = scanner1.next();
 
         System.out.println("Geben Sie Ihre zweite Farbe ein:");
-		colour2 = scanner1.next();
+		String colour2 = scanner1.next();
 
 		System.out.println("Geben Sie Ihre dritte Farbe ein:");
-		colour3 = scanner1.next();
+		String colour3 = scanner1.next();
 
 		System.out.println("Geben Sie Ihre vierte Farbe ein:");
-		colour4 = scanner1.next();
+		String colour4 = scanner1.next();
 
-		return colour1 + colour2 + colour3 + colour4;
+		String[] colours = {colour1, colour2, colour3, colour4};
+
+		return colours;
     }
 //Vergleich von gewählten Farben mit computergenerierten Farben
-    public static int Abgleichung(String randomColour1, String randomColour2, String randomColour3, String randomColour4, String colour1, String colour2, String colour3, String colour4, int i) { //scanner einfügen
-        int korrekt = 0;
-        int vollKorrekt = 0;
+public static int checkTreffer(String[] colours, String[] randomColours, int o) {
+    //eingabe ist 4 stellen groß und beinhaltet vier Integer zahlen von 1-6 die
+    //eingegeben wurden
 
+    //0 für kein treffer
+    //1 für indirekter Treffer
+    //2 für direkter Treffer
 
-        if (colour1.equalsIgnoreCase(randomColour1) || colour1.equalsIgnoreCase(randomColour2) || colour1.equalsIgnoreCase(randomColour3) || colour1.equalsIgnoreCase(randomColour4)) {
-            korrekt++;
-        }
-        if (colour2.equalsIgnoreCase(randomColour1) || colour2.equalsIgnoreCase(randomColour2) || colour2.equalsIgnoreCase(randomColour3) || colour2.equalsIgnoreCase(randomColour4)) {
-            korrekt++;
-        }
-        if (colour3.equalsIgnoreCase(randomColour1) || colour3.equalsIgnoreCase(randomColour2) || colour3.equalsIgnoreCase(randomColour3) || colour3.equalsIgnoreCase(randomColour4)) {
-            korrekt++;
-        }
-        if (colour4.equalsIgnoreCase(randomColour1) || colour4.equalsIgnoreCase(randomColour2) || colour4.equalsIgnoreCase(randomColour3) || colour4.equalsIgnoreCase(randomColour4)) {
-            korrekt++;
-        }
-
-
-        if (colour1.equalsIgnoreCase(randomColour1)) {
-            vollKorrekt++;
-        }
-        if (colour2.equalsIgnoreCase(randomColour2)) {
-            vollKorrekt++;
-        }
-        if (colour3.equalsIgnoreCase(randomColour3)) {
-            vollKorrekt++;
-        }
-        if (colour4.equalsIgnoreCase(randomColour4)) {
-            vollKorrekt++;
-        }
-
-        if (vollKorrekt == 4) {
-            System.out.println("Gratulation, Sie haben gewonnen und haben " + (13-i) + " Versuche gebraucht.");
-            i = 0;
-
-        } else {
-            System.out.println("Sie haben " + korrekt + " Farben korrekt.");
-            System.out.println("Sie haben " + vollKorrekt + " Farben korrekt und an richtiger Stelle.");
-        }
-
-        return i;
+    int treffer[] = new int[4];
+    int vollTreffer[] = new int[4];
+    for(int a = 0;a<4;a++){
+        treffer[a] = 0;
+        vollTreffer[a] = 0;
     }
+
+    //im RandomArray sind die vier Random erzeugten Zahlen zwischen 1-6
+    //wobei Zahlen auch doppelt vorkommen können
+
+
+    for (int i = 0; i < 4; i++) {
+        if (colours[i].equalsIgnoreCase(randomColours[i])) {
+            vollTreffer[i] = 1;
+        } else {
+            for(int j = 0; j < 4; j++){
+                if(colours[j].equalsIgnoreCase(randomColours[i]) && !colours[j].equalsIgnoreCase(randomColours[j])){
+                    treffer[j] = 1;
+                }
+            }
+        }
+    }
+    int zaehler = 0;
+    for (int i = 0; i < treffer.length; i++ ) {
+        zaehler += treffer[i];
+    }
+    int zaehler1 = 0;
+    for (int i = 0; i < vollTreffer.length; i++ ) {
+        zaehler1 += vollTreffer[i];
+    }
+    if (zaehler1 == 4) {
+        System.out.println("Glückwunsch, Sie haben gewonnen. Sie haben  " + (13-o) + " Versuche gebraucht.");
+        o = 0;
+    }
+    if (zaehler1 != 4) {
+        System.out.println("Sie haben " + zaehler1 + " Farben korrekt und an der richtigen Stelle.");
+        System.out.println("Sie haben " + zaehler + " Farben korrekt.");
+    }
+    return o;
+}
     public static Boolean ende() {
         Boolean restart;
         System.out.println("Möchtest du nochmals spielen? (Ja, Nein)");
