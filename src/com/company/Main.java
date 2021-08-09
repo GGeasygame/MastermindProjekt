@@ -1,13 +1,10 @@
 package com.company;
 
-import java.sql.SQLOutput;
-import java.util.Locale;
 import java.util.Random;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
-    public static Boolean restart = true;
     public static void main(String[] args) {
 
         do {
@@ -86,12 +83,7 @@ public class Main {
     }
 //Vergleich von gewählten Farben mit computergenerierten Farben
 public static int checkTreffer(String[] colours, String[] randomColours, int o) {
-    //eingabe ist 4 stellen groß und beinhaltet vier Integer zahlen von 1-6 die
-    //eingegeben wurden
 
-    //0 für kein treffer
-    //1 für indirekter Treffer
-    //2 für direkter Treffer
 
     int treffer[] = new int[4];
     int vollTreffer[] = new int[4];
@@ -99,9 +91,6 @@ public static int checkTreffer(String[] colours, String[] randomColours, int o) 
         treffer[a] = 0;
         vollTreffer[a] = 0;
     }
-
-    //im RandomArray sind die vier Random erzeugten Zahlen zwischen 1-6
-    //wobei Zahlen auch doppelt vorkommen können
 
 
     for (int i = 0; i < 4; i++) {
