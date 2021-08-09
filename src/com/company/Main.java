@@ -17,7 +17,6 @@ public class Main {
             int rc3 = random.nextInt(colourNormal.length);
             int rc4 = random.nextInt(colourNormal.length);
 
-
             String randomColour1 = colourNormal[rc1];
             String randomColour2 = colourNormal[rc2];
             String randomColour3 = colourNormal[rc3];
@@ -52,76 +51,69 @@ public class Main {
     public static String[] scanner(String[] colour) {
 
         Scanner scanner1 = new Scanner(System.in);
-
+        String[] colours = new String[4];
         System.out.println("Geben Sie Ihre erste Farbe ein:");
-        String colour1 = scanner1.next();
-        while (!Arrays.asList(colour).contains(colour1.toUpperCase())) {
-            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
-            colour1 = scanner1.next();
-        }
+        colours[0] = rechtschreibung(0, colour);
         System.out.println("Geben Sie Ihre zweite Farbe ein:");
-		String colour2 = scanner1.next();
-        while (!Arrays.asList(colour).contains(colour2.toUpperCase())) {
-            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
-            colour2 = scanner1.next();
-        }
+        colours[1] = rechtschreibung(1, colour);
 		System.out.println("Geben Sie Ihre dritte Farbe ein:");
-		String colour3 = scanner1.next();
-        while (!Arrays.asList(colour).contains(colour3.toUpperCase())) {
-            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
-            colour3 = scanner1.next();
-        }
+        colours[2] = rechtschreibung(2, colour);
 		System.out.println("Geben Sie Ihre vierte Farbe ein:");
-		String colour4 = scanner1.next();
-        while (!Arrays.asList(colour).contains(colour4.toUpperCase())) {
-            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
-            colour4 = scanner1.next();
-        }
-		String[] colours = {colour1, colour2, colour3, colour4};
+        colours[3] = rechtschreibung(3, colour);
 
 		return colours;
     }
+    public static String rechtschreibung(int number, String[] allColours) {
+        Scanner scanner1 = new Scanner(System.in);
+        String[] colours = new String[4];
+        colours[number] = scanner1.next();
+        while (!Arrays.asList(allColours).contains(colours[number].toUpperCase())) {
+            System.out.println("Rechtschreibfehler! Bitte geben Sie die Farbe nochmals ein.");
+            colours[number] = scanner1.next();
+        }
+    return colours[number];
+    }
 //Vergleich von gewählten Farben mit computergenerierten Farben
-public static int checkTreffer(String[] colours, String[] randomColours, int o) {
+    public static int checkTreffer(String[] colours, String[] randomColours, int o) {
 
 
-    int treffer[] = new int[4];
-    int vollTreffer[] = new int[4];
-    for(int a = 0;a<4;a++){
+        int treffer[] = new int[4];
+        int vollTreffer[] = new int[4];
+        for(int a = 0;a<4;a++){
         treffer[a] = 0;
         vollTreffer[a] = 0;
-    }
+        }
 
 
-    for (int i = 0; i < 4; i++) {
-        if (colours[i].equalsIgnoreCase(randomColours[i])) {
-            vollTreffer[i] = 1;
-        } else {
-            for(int j = 0; j < 4; j++){
-                if(colours[j].equalsIgnoreCase(randomColours[i]) && !colours[j].equalsIgnoreCase(randomColours[j])){
-                    treffer[j] = 1;
+        for (int i = 0; i < 4; i++) {
+            if (colours[i].equalsIgnoreCase(randomColours[i])) {
+                vollTreffer[i] = 1;
+            } else {
+                for(int j = 0; j < 4; j++){
+                    if(colours[j].equalsIgnoreCase(randomColours[i]) && !colours[j].equalsIgnoreCase(randomColours[j])){
+                        treffer[j] = 1;
+                    }
                 }
             }
         }
+        int zaehler = 0;
+        for (int i = 0; i < treffer.length; i++ ) {
+            zaehler += treffer[i];
+        }
+        int zaehler1 = 0;
+        for (int i = 0; i < vollTreffer.length; i++ ) {
+            zaehler1 += vollTreffer[i];
+        }
+        if (zaehler1 == 4) {
+            System.out.println("Glückwunsch, Sie haben gewonnen. Sie haben  " + (13-o) + " Versuche gebraucht.");
+            o = 0;
+        }
+        if (zaehler1 != 4) {
+            System.out.println("Sie haben " + zaehler1 + " Farben korrekt und an der richtigen Stelle.");
+            System.out.println("Sie haben " + zaehler + " Farben korrekt.");
+        }
+        return o;
     }
-    int zaehler = 0;
-    for (int i = 0; i < treffer.length; i++ ) {
-        zaehler += treffer[i];
-    }
-    int zaehler1 = 0;
-    for (int i = 0; i < vollTreffer.length; i++ ) {
-        zaehler1 += vollTreffer[i];
-    }
-    if (zaehler1 == 4) {
-        System.out.println("Glückwunsch, Sie haben gewonnen. Sie haben  " + (13-o) + " Versuche gebraucht.");
-        o = 0;
-    }
-    if (zaehler1 != 4) {
-        System.out.println("Sie haben " + zaehler1 + " Farben korrekt und an der richtigen Stelle.");
-        System.out.println("Sie haben " + zaehler + " Farben korrekt.");
-    }
-    return o;
-}
     public static Boolean ende() {
         Boolean restart;
         System.out.println("Möchtest du nochmals spielen? (Ja, Nein)");
